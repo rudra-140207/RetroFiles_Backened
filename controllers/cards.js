@@ -119,7 +119,7 @@ export const setCookie = async (req, res) => {
     await res.cookie("token", token, {
       secure: true,
       domain: '.onrender.com',
-      httpOnly: false,
+      httpOnly: true,
       sameSite: "none",
       expires: new Date(Date.now() + 300 * 1000),
     });
