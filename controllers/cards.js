@@ -117,7 +117,9 @@ export const setCookie = async (req, res) => {
     const _id = "secretCannotReveal";
     const token = jwt.sign({ _id }, secret);
     await res.cookie("token", token, {
-      httpOnly: true,
+      secure: true,
+      httpOnly: false,
+      sameSite: "none",
       expires: new Date(Date.now() + 300 * 1000),
     });
     res.status(200).json({ message: "Token Generated and Saved" });

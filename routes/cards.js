@@ -22,7 +22,7 @@ router.delete("/delete", deleteCard);
 router.put("/edit-card/:id", editCard);
 router.get("/card-id/:id", cardById);
 router.post("/like", updateLike);
-router.post("/set-cookie",setCookie);
+router.get("/set-cookie",setCookie);
 router.post("/verify-cookie" ,verifyCookie);
 router.post("/operation",operations);
 
