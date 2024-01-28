@@ -118,6 +118,7 @@ export const setCookie = async (req, res) => {
     const token = jwt.sign({ _id }, secret);
     await res.cookie("token", token, {
       secure: true,
+      domain: '.netlify.app, .onrender.com',
       httpOnly: false,
       sameSite: "none",
       expires: new Date(Date.now() + 300 * 1000),
