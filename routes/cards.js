@@ -23,7 +23,7 @@ router.put("/edit-card/:id", editCard);
 router.get("/card-id/:id", cardById);
 router.post("/like", updateLike);
 router.get("/set-cookie",setCookie);
-router.post("/verify-cookie" ,verifyCookie);
+router.get("/verify-cookie" ,verifyCookie);
 router.post("/operation",operations);
 
 export default router;
