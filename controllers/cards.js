@@ -120,7 +120,7 @@ export const setCookie = async (req, res) => {
       secure: true,
       httpOnly: true,
       sameSite: "none",
-      domain : ".onrender.com",
+      // domain : ".onrender.com",
       expires: new Date(Date.now() + 300 * 1000),
     });
     res.status(200).json({ message: "Token Generated and Saved" });
