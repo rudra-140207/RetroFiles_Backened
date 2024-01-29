@@ -117,7 +117,7 @@ export const setCookie = async (req, res) => {
     const _id = "secretCannotReveal";
     const token = jwt.sign({ _id }, secret);
     await res.cookie("token", token, {
-      secure: true,
+      // secure: true,
       domain: '.onrender.com',
       httpOnly: true,
       sameSite: "none",
