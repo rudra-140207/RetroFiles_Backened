@@ -11,18 +11,20 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
-
-app.use(cookieParser());
 app.use(cors({
-    origin: "https://retrofiles-07.onrender.com",
-    credentials:  true 
+    origin : 'https://retrofiles-07.onrender.com' ,
+    methods : ['POST','GET','DELETE','PUT'],
+    credentials : true
 }));
+app.use(cookieParser());
+
+
 app.use(bodyParser.json({extended : true}));
 app.use(bodyParser.urlencoded({extended : true}));
 
 app.use("/cards",router);
 
-const port = process.env.PORT || 4001 ;
+const port = process.env.PORT;
 const url = process.env.MONGO_URL ;
 
 mongoose.connect(`${url}`,{

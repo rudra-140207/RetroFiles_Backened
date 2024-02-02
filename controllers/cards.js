@@ -1,6 +1,8 @@
 import cardMessage from "../models/card.js";
 import operationModel from "../models/operations.js";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
 
 const secret = process.env.SECRET ;
 
@@ -117,13 +119,12 @@ export const setCookie = async (req, res) => {
     const _id = "secretCannotReveal";
     const token = jwt.sign({ _id }, secret);
     await res.cookie("token", token, {
-      secure: true,
       httpOnly: true,
-      sameSite: "none",
-      // domain : ".onrender.com",
+      secure : true,
+      sameSite : "none",
       expires: new Date(Date.now() + 300 * 1000),
     });
-    res.status(200).json({ message: "Token Generated and Saved" });
+    res.status(200).json({token});
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -139,16 +140,17 @@ export const verifyCookie = async (req, res) => {
 
     res.status(200).json({ message: "Exist" });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json({ message: error.message  });
   }
 };
 
 export const operations = async (req, res) => {
   const token = req.cookies.token;
+  // console.log(token);
   const { field } = req.body;
   try {
     if (!token) {
-      return res.status(200).json({ message: "missing field" });
+      return res.status(200).json({ message: "missing field token" });
     }
     const response = await operationModel.findOne({ token });
     if (response) {
